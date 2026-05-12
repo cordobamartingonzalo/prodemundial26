@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -49,9 +49,16 @@ function getErrorMessage(error: AuthError): string {
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const supabase = createClient()
   const [loading, setLoading] = useState(false)
   const [oauthLoading, setOauthLoading] = useState(false)
+
+  useEffect(() => {
+    if (searchParams.get('error') === 'auth_callback') {
+      toast.error('Error al autenticar con Google. Intentá de nuevo.')
+    }
+  }, [searchParams])
 
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
