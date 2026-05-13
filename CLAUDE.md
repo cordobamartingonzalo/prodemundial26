@@ -18,8 +18,16 @@ App web para jugar al prode con amigos durante el Mundial FIFA 2026.
 | No acertar | 0 pts |
 
 **Multiplicadores por fase:**
-- x1 → grupos, octavos, cuartos
-- x2 → semis, tercer puesto, final
+
+| Fase | Multiplicador |
+|------|---------------|
+| Fase de grupos | x1 |
+| 16avos de final | x1 |
+| 8avos de final | x2 |
+| Cuartos de final | x2 |
+| Semifinales | x3 |
+| Tercer puesto | x3 |
+| Final | x3 |
 
 **Cierre de pronósticos:** editable hasta el horario exacto del partido. Ni un minuto después.
 
