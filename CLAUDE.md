@@ -31,6 +31,15 @@ App web para jugar al prode con amigos durante el Mundial FIFA 2026.
 
 **Cierre de pronósticos:** editable hasta el horario exacto del partido. Ni un minuto después.
 
+## Manejo de zonas horarias
+
+- La base de datos guarda todos los timestamps en UTC (columna `kickoff_at` es `timestamptz`).
+- El público objetivo de la app es argentino, por lo tanto la UI SIEMPRE muestra las fechas y horarios en zona horaria Argentina (UTC-3, sin DST).
+- Cuando se muestre un horario en pantalla, agregar siempre el label "(Horario Argentina)" o "(ARG)" para evitar ambigüedad.
+- Formato sugerido: "jue 11 jun, 16:00 hs (ARG)".
+- Para formateo de fechas en el frontend, usar `date-fns` con locale `es` y timezone forzado a `'America/Argentina/Buenos_Aires'`. Alternativa: `Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' })`.
+- Nunca confiar en la timezone del browser del usuario (puede estar en cualquier lado, o mal configurada).
+
 ## Decisiones de diseño clave
 
 - **Predictions globales por usuario**: un pronóstico vale para todos los torneos donde el usuario participa.
